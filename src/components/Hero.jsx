@@ -12,8 +12,8 @@ export default function Hero() {
       </div>
 
       {/* Title */}
-      <h1 className="fl-text-4xl/7xl font-bold tracking-tight fl-mb-4/6">
-        <span className="bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+      <h1 className="fl-text-4xl/7xl font-bold tracking-tight fl-mb-4/6 fl-mt-1.5/2.5">
+        <span className="bg-linear-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
           fluid-tailwindcss
         </span>
       </h1>
