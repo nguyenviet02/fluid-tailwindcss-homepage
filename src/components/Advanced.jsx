@@ -1,4 +1,5 @@
 import CodeBlock, { InlineCode } from "./CodeBlock";
+import BreakpointRange from "./BreakpointRange";
 
 export default function Advanced() {
   return (
@@ -114,6 +115,9 @@ export default function Advanced() {
           </div>
         </div>
       </div>
+
+      {/* Breakpoint Range */}
+      <BreakpointRange />
 
       {/* Responsive Variants */}
       <div className="fl-mb-8/12">
