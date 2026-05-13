@@ -8,6 +8,7 @@ const navItems = [
   { id: "integrations", label: "Integrations" },
   { id: "limitations", label: "Limitations" },
   { id: "troubleshooting", label: "Troubleshooting" },
+  { id: "changelog", label: "Changelog" },
 ];
 
 export default function Sidebar() {

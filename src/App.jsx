@@ -7,6 +7,7 @@ import Advanced from "./components/Advanced";
 import Integrations from "./components/Integrations";
 import Limitations from "./components/Limitations";
 import Troubleshooting from "./components/Troubleshooting";
+import Changelog from "./components/Changelog";
 
 import { Analytics } from "@vercel/analytics/react";
 
@@ -37,6 +38,7 @@ export default function App() {
               <Integrations />
               <Limitations />
               <Troubleshooting />
+              <Changelog />
             </div>
 
             {/* Footer */}
