@@ -2,6 +2,16 @@ import { InlineCode } from "./CodeBlock";
 
 const releases = [
   {
+    version: "1.1.3",
+    date: "2026-05",
+    changes: [
+      {
+        type: "feat",
+        text: "Support fluid letter-spacing when fontSize theme includes letterSpacing",
+      },
+    ],
+  },
+  {
     version: "1.1.2",
     date: "2026-05",
     changes: [
