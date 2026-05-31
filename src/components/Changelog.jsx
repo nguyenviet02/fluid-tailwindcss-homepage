@@ -2,6 +2,22 @@ import { InlineCode } from "./CodeBlock";
 
 const releases = [
   {
+    version: "1.1.5",
+    date: "2026-05",
+    tag: "next",
+    changes: [
+      {
+        type: "new",
+        text: "Layout viewport options — match exact design breakpoints while fluid scaling continues beyond",
+        detail: "minLayoutViewport / maxLayoutViewport",
+      },
+      {
+        type: "fix",
+        text: "Fixed fluid text calculation for edge cases",
+      },
+    ],
+  },
+  {
     version: "1.1.3",
     date: "2026-05",
     changes: [
