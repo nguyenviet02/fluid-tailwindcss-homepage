@@ -1,10 +1,22 @@
-import { InlineCode } from "./CodeBlock";
+import { useState } from "react";
+import CodeBlock, { InlineCode } from "./CodeBlock";
 
 const releases = [
   {
+    version: "1.1.6",
+    date: "2026-06",
+    tag: "next",
+    changes: [
+      {
+        type: "new",
+        text: "Dynamic CSS Fluid Variables — declare specs as custom properties inside the plugin block or in config with automatic theme extensions.",
+        showGuide: true,
+      },
+    ],
+  },
+  {
     version: "1.1.5",
     date: "2026-05",
-    tag: "next",
     changes: [
       {
         type: "new",
@@ -117,26 +129,9 @@ export default function Changelog() {
                 </span>
               </div>
 
-              <ul className="fl-space-y-1.5/2">
+              <ul className="fl-space-y-3/4">
                 {release.changes.map((change, j) => (
-                  <li key={j} className="flex items-start fl-gap-2/3">
-                    <span
-                      className={`fl-text-xs font-medium fl-px-1.5/2 fl-py-0.5 rounded shrink-0 mt-[2px] ${typeColors[change.type]}`}
-                    >
-                      {typeLabels[change.type]}
-                    </span>
-                    <span className="fl-text-sm/base text-slate-300">
-                      {change.text}
-                      {change.detail && (
-                        <>
-                          {" "}
-                          <InlineCode className="text-slate-400 bg-slate-800/80">
-                            {change.detail}
-                          </InlineCode>
-                        </>
-                      )}
-                    </span>
-                  </li>
+                  <ChangeItem key={j} change={change} />
                 ))}
               </ul>
             </div>
@@ -144,5 +139,163 @@ export default function Changelog() {
         ))}
       </div>
     </section>
+  );
+}
+
+function ChangeItem({ change }) {
+  const [guideOpen, setGuideOpen] = useState(false);
+  return (
+    <li className="flex flex-col items-start w-full">
+      <div className="flex items-start fl-gap-2/3">
+        <span
+          className={`fl-text-xs font-medium fl-px-1.5/2 fl-py-0.5 rounded shrink-0 mt-[2px] ${typeColors[change.type]}`}
+        >
+          {typeLabels[change.type]}
+        </span>
+        <span className="fl-text-sm/base text-slate-300">
+          {change.text}
+          {change.detail && (
+            <>
+              {" "}
+              <InlineCode className="text-slate-400 bg-slate-800/80">
+                {change.detail}
+              </InlineCode>
+            </>
+          )}
+        </span>
+      </div>
+      
+      {change.showGuide && (
+        <div className="w-full fl-mt-3/4">
+          <button
+            onClick={() => setGuideOpen(!guideOpen)}
+            className="flex items-center fl-gap-1.5/2 text-cyan-400 hover:text-cyan-300 font-medium fl-text-xs/sm transition-colors duration-150 cursor-pointer"
+          >
+            <span>{guideOpen ? "Hide Setup Guide" : "Show Setup Guide"}</span>
+            <svg
+              className={`w-4 h-4 transition-transform duration-200 ${guideOpen ? "rotate-180" : ""}`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          
+          {guideOpen && (
+            <div className="w-full fl-mt-4/5 border-l-2 border-slate-800/80 fl-pl-4/5 fl-space-y-4/6 transition-all duration-300">
+              <div>
+                <h4 className="fl-text-xs/sm font-semibold text-slate-200 fl-mb-2/3">
+                  1. Setup the Plugin & Custom Properties
+                </h4>
+                
+                <p className="fl-text-xs/sm text-slate-400 fl-mb-2/3">
+                  <strong>Option A: CSS-first approach</strong> (Recommended for TailwindCSS v4)
+                  <br />
+                  In your main CSS entrypoint (e.g., <InlineCode>index.css</InlineCode> or <InlineCode>global.css</InlineCode>), import Tailwind, load the plugin, and declare your fluid specs directly as CSS properties inside the plugin block:
+                </p>
+                
+                <CodeBlock
+                  language="css"
+                  title="src/index.css"
+                  code={`/* src/index.css */
+@import "tailwindcss";
+@plugin "fluid-tailwindcss" {
+  /* 1. Typography */
+  --text-head-1: 36px/60px;
+  
+  /* 2. Spacing (resolves automatically as a theme extension) */
+  --spacing-gutter: 16px/32px;
+  
+  /* 3. Border Radius */
+  --radius-card: 8px/20px;
+  
+  /* 4. Non-matching custom properties (available via var()) */
+  --brand-section-min-height: 400px/600px;
+}`}
+                />
+                
+                <p className="fl-text-xs/sm text-slate-400 fl-my-2/3">
+                  <strong>Option B: JavaScript-based configuration</strong> (TailwindCSS v3 or v4 config)
+                  <br />
+                  If you prefer or are using JS config, declare them in the plugins array of <InlineCode>tailwind.config.js</InlineCode>:
+                </p>
+                
+                <CodeBlock
+                  language="javascript"
+                  title="tailwind.config.js"
+                  code={`// tailwind.config.js
+module.exports = {
+  content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [
+    require("fluid-tailwindcss")({
+      variables: {
+        "text-head-1": "36px/60px",
+        "spacing-gutter": "16px/32px",
+        "radius-card": "8px/20px",
+        "brand-section-min-height": "400px/600px",
+      },
+    }),
+  ],
+};`}
+                />
+              </div>
+              
+              <div>
+                <h4 className="fl-text-xs/sm font-semibold text-slate-200 fl-mb-2/3">
+                  2. Use in your React Components
+                </h4>
+                <p className="fl-text-xs/sm text-slate-400 fl-mb-2/3">
+                  Once declared, the plugin registers these directly with Tailwind. In your React components, you can use normal Tailwind class names for the matching prefixes, and standard <InlineCode>var()</InlineCode> functions for non-prefixed variables:
+                </p>
+                
+                <CodeBlock
+                  language="tsx"
+                  title="src/components/HeroSection.tsx"
+                  code={`// src/components/HeroSection.tsx
+import React from "react";
+
+export function HeroSection() {
+  return (
+    <section 
+      className="bg-slate-900 text-white flex flex-col justify-center"
+      // Consume non-matching fluid variables manually via inline styles:
+      style={{ minHeight: "var(--fluid-brand-section-min-height)" }}
+    >
+      {/* 
+        - p-gutter: Fluid padding scaling from 16px to 32px
+        - rounded-card: Fluid border-radius scaling from 8px to 20px
+      */}
+      <div className="max-w-4xl mx-auto p-gutter bg-slate-800 rounded-card shadow-xl">
+        
+        {/* text-head-1: Fluid typography scaling from 36px to 60px */}
+        <h1 className="text-head-1 font-extrabold leading-tight tracking-tight">
+          Responsive design made simple.
+        </h1>
+        
+        {/* mt-gutter: Fluid margin-top matching the spacing-gutter */}
+        <p className="mt-gutter text-slate-300 text-lg">
+          Teammates can use normal-looking Tailwind utility classes like{" "}
+          <code className="text-pink-400">text-head-1</code> or{" "}
+          <code className="text-pink-400">p-gutter</code>, while responsive{" "}
+          <code className="text-pink-400">clamp()</code> sizing runs under the hood.
+        </p>
+        <button className="mt-gutter px-6 py-3 bg-indigo-600 hover:bg-indigo-500 rounded font-semibold transition-colors">
+          Get Started
+        </button>
+      </div>
+    </section>
+  );
+}`}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </li>
   );
 }

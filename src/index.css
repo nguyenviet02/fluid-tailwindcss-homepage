@@ -1,5 +1,17 @@
 @import "tailwindcss";
-@plugin "fluid-tailwindcss";
+@plugin "fluid-tailwindcss" {
+  /* 1. Typography */
+  --text-head-1: 36px/60px;
+  
+  /* 2. Spacing (resolves automatically as a theme extension) */
+  --spacing-gutter: 16px/32px;
+  
+  /* 3. Border Radius */
+  --radius-card: 8px/20px;
+  
+  /* 4. Non-matching custom properties (available via var()) */
+  --brand-section-min-height: 400px/600px;
+}
 
 /* Custom scrollbar for code blocks */
 .code-scrollbar::-webkit-scrollbar {

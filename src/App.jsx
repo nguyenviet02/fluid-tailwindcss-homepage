@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import Installation from "./components/Installation";
 import BasicUsage from "./components/BasicUsage";
 import Configuration from "./components/Configuration";
+import FluidVariablesDemo from "./components/FluidVariablesDemo";
 import Advanced from "./components/Advanced";
 import Integrations from "./components/Integrations";
 import Limitations from "./components/Limitations";
@@ -34,6 +35,7 @@ export default function App() {
               <Installation />
               <BasicUsage />
               <Configuration />
+              <FluidVariablesDemo />
               <Advanced />
               <Integrations />
               <Limitations />

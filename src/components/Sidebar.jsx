@@ -4,6 +4,7 @@ const navItems = [
   { id: "installation", label: "Installation" },
   { id: "basic-usage", label: "Basic usage" },
   { id: "configuration", label: "Configuration" },
+  { id: "fluid-variables", label: "Fluid variables" },
   { id: "advanced", label: "Advanced" },
   { id: "integrations", label: "Integrations" },
   { id: "limitations", label: "Limitations" },
