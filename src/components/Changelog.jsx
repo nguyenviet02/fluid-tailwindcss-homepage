@@ -3,7 +3,7 @@ import CodeBlock, { InlineCode } from "./CodeBlock";
 
 const releases = [
   {
-    version: "1.1.6",
+    version: "1.1.7",
     date: "2026-06",
     tag: "next",
     changes: [

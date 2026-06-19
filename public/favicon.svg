@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <!-- Stylized water droplet representing fluid curves -->
+  <path d="M50,15 C50,15 78,43 78,63 C78,79.5 65.5,91 50,91 C34.5,91 22,79.5 22,63 C22,43 50,15 50,15 Z" fill="url(#grad)" />
+  <!-- Inner shadow/motion curve -->
+  <path d="M50,28 C50,28 68,48 68,63 C68,73 60,81 50,81 C40,81 32,73 32,63 C32,48 50,28 50,28 Z" fill="#020617" opacity="0.3" />
+</svg>

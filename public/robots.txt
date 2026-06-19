@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fluid-tailwindcss.vietnx.io.vn/sitemap.xml
