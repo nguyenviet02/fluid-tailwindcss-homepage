@@ -10,7 +10,9 @@
     "format": "prettier --write .",
     "lint:fix": "eslint --fix .",
     "lint:fix:format": "prettier --write --fix .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "link:local": "pnpm link ../fluid-tailwindcss",
+    "link:remote": "pnpm unlink fluid-tailwindcss && pnpm install --force"
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
@@ -21,7 +23,7 @@
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
     "@vercel/analytics": "^1.6.1",
-    "fluid-tailwindcss": "^1.1.7",
+    "fluid-tailwindcss": "^1.1.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "tailwindcss": "^4.1.17"
